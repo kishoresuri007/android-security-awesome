@@ -6,6 +6,14 @@ Custom resources for Moto E5:
 
 <a href="https://forum.xda-developers.com/moto-e5/development/recovery-twrp-moto-e-5-play-james-t3796323"> Moto E5 TWRP and Root </a>
 
+frida-commands: 
+
+<code class="language-sh"> frida -U -f com.funda.two -l frida-android-repinning_sa-1.js --no-pause </code>
+
+<code class="language-sh">  adb shell 'pm list packages -f' | grep funda </code>
+
+<code class="language-sh"> ./frida-server --listen-address 0.0.0.0 & </code>
+
 A collection of android security related resources.
 
 1. [Tools](#tools)
