@@ -14,6 +14,11 @@ frida-commands:
 
 <code class="language-sh"> ./frida-server --listen 0.0.0.0 & </code>
 
+Mount /system as read-only/read-write:
+
+<code class="language-sh"> mount -o rw,remount /system </code>
+<code class="language-sh"> mount -o rw,remount /system </code>
+
 A collection of android security related resources.
 
 1. [Tools](#tools)
