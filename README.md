@@ -43,11 +43,25 @@ mv cacert.pem &lt;hash&gt;.0
 chmod 644 /system/etc/security/cacerts/&lt;cert&gt;.0  
 </code></pre></li>
       <li> Now do tcpdump again and open the app</li>
+      <li> If the `cert invalid` is resolved but still having issues, look into issues like: <a href="https://support.portswigger.net/customer/portal/questions/16711090-cert-validity-too-long">burp gives long valid certs <a> </li> 
+      <li><p> Check installed cert's validity : <b> Fix from the thread </b><br>
+  https://support.portswigger.net/customer/portal/questions/16711090-cert-validity-too-long</p> 
+ <p> To generate the PKCS#12 keystore: <br>
+<code> 
+openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout pk.key -out certificate.crt
+  
+openssl pkcs12 -export -out certificate.p12 -inkey pk.key -certfile certificate.crt -in certificate.crt 
+</code> <br>
+
+<i> Script to covert .der to android format </i>: 
+<a href="https://github.com/oemunlock/burp_der_cert_to_android_cert">https://github.com/oemunlock/burp_der_cert_to_android_cert </a>
+
+After importing the certificate in Burp and restarting Burp, downloaded it to PC by viewing the Burp Proxy page (localhost:8080) and downloading the cacert.der file. 
+
+<code> adb root && adb wait-for-device remount && adb wait-for-device push [name of cert] /system/etc/security/cacerts/[name of cert]
+&& adb shell ls -al -Z /system/etc/security/cacerts/*</code>
+  </li>
 </ol> 
-
-
-
-
 
 A collection of android security related resources.
 
