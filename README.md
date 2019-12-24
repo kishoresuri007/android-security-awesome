@@ -32,6 +32,8 @@
   <li> adb pull the pcap on your host machine, use filter like ip.addr == <burp-host> and look at the ssl client hello </li>
   <li> you should be looking for `server_name` extension since burp needs it to generate the ssl cert(remember the ssl per-host setting) </li>
   <li> if you see the `server_name` extension, follow the ssl handshake and see if there are any errors like `certificate_unknown` </li>
+  <li> <a href="https://blog.ropnop.com/configuring-burp-suite-with-android-nougat/">Read this</a> to understand how after nougat, apps by default do not trust user installed certs </li>
+  
   
 </ol> 
 
