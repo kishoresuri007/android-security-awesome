@@ -1,12 +1,12 @@
 # android-security-awesome ![Awesome](https://cdn.rawgit.com/sindresorhus/awesome/d7305f38d29fed78fa85652e3a63e154dd8e8829/media/badge.svg) <a href="https://travis-ci.org/ashishb/android-security-awesome"><img src="https://img.shields.io/travis/ashishb/android-security-awesome/master.svg?label=URL%20Check" alt="URL Check"></a>
 
-Custom resources for Moto E5:
+<b> My custom resources for Moto E5: </b>
 
 <a href="https://forum.xda-developers.com/moto-e5/how-to/guide-root-twrp-moto-e5-play-explained-t3856182">Moto E5 Rooting Process </a>
 
 <a href="https://forum.xda-developers.com/moto-e5/development/recovery-twrp-moto-e-5-play-james-t3796323"> Moto E5 TWRP and Root </a>
 
-frida-commands: 
+<b> frida-commands: </b>
 
 <code class="language-sh"> frida -U -f com.funda.two -l frida-android-repinning_sa-1.js --no-pause </code>
 
@@ -14,10 +14,30 @@ frida-commands:
 
 <code class="language-sh"> ./frida-server --listen 0.0.0.0 & </code>
 
-Mount /system as read-only/read-write:
+<b> Mount /system as read-only/read-write: </b>
 
 <code class="language-sh"> mount -o rw,remount /system </code>
 <code class="language-sh"> mount -o rw,remount /system </code>
+
+<b> Debugging and intercepting non proxy-aware app traffic </b> <br>
+<i> Reference: <a href="https://portswigger.net/burp/documentation/desktop/tools/proxy/options/invisible">Burp writeup </a> </i> <br>
+<ol type="1">
+  <li>disassemble the app with a tool like jadx and save the project</li>
+  <li>Find all the domain/subdomains the app is communicating with by grepping the source</li>
+  <li>Remount /system as RW and add domains/subdomains to /system/etc/hosts with ip address of your burp listener </li>
+  <li> Remember to check invisible proxy and since you did not modify your burp machine host file, your burp can reslve proper IP addresses for the corresponding domain/subdomains </li>
+  <li> Also select the default option of per-host certificates </li>
+  <li> If non-proxy aware app traffic is not seen, it may be some ssl certificate related issue </li>
+  <li> run tcpdump on your android with something like tcpdump -i wlan0 -w <app-name>.pcap </li>
+  <li> adb pull the pcap on your host machine, use filter like ip.addr == <burp-host> and look at the ssl client hello </li>
+  <li> you should be looking for `server_name` extension since burp needs it to generate the ssl cert(remember the ssl per-host setting) </li>
+  <li> if you see the `server_name` extension, follow the ssl handshake and see if there are any errors like `certificate_unknown` </li>
+  
+</ol> 
+
+
+
+
 
 A collection of android security related resources.
 
