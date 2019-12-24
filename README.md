@@ -12,7 +12,7 @@ frida-commands:
 
 <code class="language-sh">  adb shell 'pm list packages -f' | grep funda </code>
 
-<code class="language-sh"> ./frida-server --listen-address 0.0.0.0 & </code>
+<code class="language-sh"> ./frida-server --listen 0.0.0.0 & </code>
 
 A collection of android security related resources.
 
