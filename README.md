@@ -33,7 +33,7 @@
   <li> you should be looking for `server_name` extension since burp needs it to generate the ssl cert(remember the ssl per-host setting) </li>
   <li> if you see the `server_name` extension, follow the ssl handshake and see if there are any errors like `certificate_unknown` </li>
   <li> <a href="https://blog.ropnop.com/configuring-burp-suite-with-android-nougat/">Read this</a> to understand how after nougat, apps by default do not trust user installed certs </li>
-  <li> added steps from the blog:  
+  <li> Resolve it by adding cert to system certs folder. Added steps from the blog:  
     Android wants the certificate to be in PEM format, and to have the filename equal to the subject_hash_old value appended with .0.(Note: if you are using OpenSSL <1.0, it's actually just the subject_hash, not the "old" one).Use openssl to convert DER to PEM, then output the subject_hash_old and rename the file </li>
       <li> <pre><code>openssl x509 -inform DER -in cacert.der -out cacert.pem  
 openssl x509 -inform PEM -subject_hash_old -in cacert.pem |head -1  
