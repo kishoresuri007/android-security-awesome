@@ -19,7 +19,7 @@
 <code class="language-sh"> mount -o rw,remount /system </code>
 <code class="language-sh"> mount -o rw,remount /system </code>
 
-<b> Debugging and intercepting non proxy-aware app traffic </b> <br>
+<b> Debugging issues with intercepting non proxy-aware app traffic </b> <br>
 <i> Reference: <a href="https://portswigger.net/burp/documentation/desktop/tools/proxy/options/invisible">Burp writeup </a> </i> <br>
 <ol type="1">
   <li>disassemble the app with a tool like jadx and save the project</li>
