@@ -43,7 +43,7 @@ mv cacert.pem &lt;hash&gt;.0
 chmod 644 /system/etc/security/cacerts/&lt;cert&gt;.0  
 </code></pre></li>
       <li> Now do tcpdump again and open the app</li>
-      <li> If the `cert invalid` is resolved but still having issues, look into issues like: <a href="https://support.portswigger.net/customer/portal/questions/16711090-cert-validity-too-long">burp gives long valid certs <a> </li> 
+      <li> If the `certificate_unknown` issue is resolved but still having issues, look into issues like: <a href="https://support.portswigger.net/customer/portal/questions/16711090-cert-validity-too-long">burp gives long valid certs <a> </li> 
       <li><p> Check installed cert's validity : <b> Fix from the thread </b><br>
   https://support.portswigger.net/customer/portal/questions/16711090-cert-validity-too-long</p> 
  <p> To generate the PKCS#12 keystore: <br>
