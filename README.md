@@ -22,6 +22,8 @@
 <b> Resolving issues with intercepting non proxy-aware app traffic </b> <br>
 <i> Reference: <a href="https://portswigger.net/burp/documentation/desktop/tools/proxy/options/invisible">Burp writeup </a> </i> <br>
 <ol type="1">
+  <li> Is the app online after adding proxy settings to ur wifi but you cannot intercept it ? -it may be non proxy-aware </li>
+  <li> if the app is offline, the proxy has affected it somehow right?  - check for ssl pinning. Continue below if the app is just online after proxy settings (proxy unaware) </li>
   <li>disassemble the app with a tool like jadx and save the project</li>
   <li>Find all the domain/subdomains the app is communicating with by grepping the source</li>
   <li>Remount /system as RW and add domains/subdomains to /system/etc/hosts with ip address of your burp listener </li>
